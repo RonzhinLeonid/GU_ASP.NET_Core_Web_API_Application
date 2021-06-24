@@ -22,10 +22,15 @@ namespace Les1
         public static async Task<IEnumerable<Post>> LoadPostsAsync(int startId = 1, int count = 1)
         {
             var tasks = Enumerable.Range(startId, count)
-                                  .Select(id => Client.GetStringAsync($"posts/{id}")
-                                  .ContinueWith(x => JsonSerializer.Deserialize<Post>(x.Result, Options)));
+                                  .Select(id => LoadPostAsync(id));
             await Task.WhenAll(tasks);
             return tasks.Select(x => x.Result);
+        }
+
+        public static async Task<Post> LoadPostAsync(int id = 1)
+        {
+            var tasks = Client.GetAsync(Client.BaseAddress + $"posts/{id}").Result.Content.ReadAsStringAsync().Result;
+            return JsonSerializer.Deserialize<Post>(tasks, Options);
         }
     }
 }

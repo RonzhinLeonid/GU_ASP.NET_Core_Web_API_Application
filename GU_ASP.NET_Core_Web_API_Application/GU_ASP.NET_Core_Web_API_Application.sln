@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GU_ASP.NET_Core_Web_API_Application", "GU_ASP.NET_Core_Web_API_Application\GU_ASP.NET_Core_Web_API_Application.csproj", "{74EE2639-A8C8-49CD-BF2B-A5C64AB7078C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Les1", "Les1\Les1.csproj", "{860FB753-32A4-449C-9C9B-935DCA945A62}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{74EE2639-A8C8-49CD-BF2B-A5C64AB7078C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74EE2639-A8C8-49CD-BF2B-A5C64AB7078C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74EE2639-A8C8-49CD-BF2B-A5C64AB7078C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74EE2639-A8C8-49CD-BF2B-A5C64AB7078C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{860FB753-32A4-449C-9C9B-935DCA945A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{860FB753-32A4-449C-9C9B-935DCA945A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{860FB753-32A4-449C-9C9B-935DCA945A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
