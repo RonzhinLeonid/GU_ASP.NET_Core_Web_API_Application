@@ -29,8 +29,9 @@ namespace Les1
 
         public static async Task<Post> LoadPostAsync(int id = 1)
         {
-            var tasks = Client.GetAsync(Client.BaseAddress + $"posts/{id}").Result.Content.ReadAsStringAsync().Result;
-            return JsonSerializer.Deserialize<Post>(tasks, Options);
+            var tasks = await Client.GetAsync(Client.BaseAddress + $"posts/{id}");
+            var content = await tasks.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<Post>(content, Options);
         }
     }
 }
