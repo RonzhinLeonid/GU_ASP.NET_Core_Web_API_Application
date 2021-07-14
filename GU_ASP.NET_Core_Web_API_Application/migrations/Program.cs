@@ -9,7 +9,7 @@ namespace migrations
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
         }
@@ -18,7 +18,7 @@ namespace migrations
            Host.CreateDefaultBuilder(args)
                .ConfigureServices((hostContext, services) =>
                {
-                   services.AddDbContext<ApplicationDataContext>(options =>
+                   services.AddDbContextFactory<ApplicationDataContext>(options =>
                    {
                        options.UseNpgsql(
                            hostContext.Configuration.GetConnectionString("DefaultConnection"),
@@ -32,6 +32,7 @@ namespace migrations
                                    && level == LogLevel.Information);
                        }));
                    });
+                   //services.AddScoped<Worker>();
                    services.AddHostedService<Worker>();
                });
     }

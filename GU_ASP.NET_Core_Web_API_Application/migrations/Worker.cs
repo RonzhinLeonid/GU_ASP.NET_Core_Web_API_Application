@@ -9,16 +9,21 @@ namespace migrations
 {
     internal class Worker : IHostedService
     {
-        private readonly ApplicationDataContext _context;
+        private readonly IDbContextFactory<ApplicationDataContext> _context;
 
-        public Worker(ApplicationDataContext context)
+        public Worker(IDbContextFactory<ApplicationDataContext> context)
         {
             _context = context;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            await _context.Database.MigrateAsync(cancellationToken);
+            //await _context.CreateDbContext().Database.MigrateAsync(cancellationToken);
+            await using var context = _context.CreateDbContext();
+            if ((await context.Database.GetPendingMigrationsAsync(cancellationToken)).Any())
+            {
+                await context.Database.MigrateAsync(cancellationToken);
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
