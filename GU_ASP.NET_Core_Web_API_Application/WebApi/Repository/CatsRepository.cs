@@ -10,7 +10,10 @@ namespace WebApi.Repository
     {
         private readonly ApplicationDataContext _context;
 
-        public CatsRepository(ApplicationDataContext context) => _context = context;
+        public CatsRepository(ApplicationDataContext context)
+        {
+            _context = context;
+        }
 
         public void Add(Cat kitten)
         {
