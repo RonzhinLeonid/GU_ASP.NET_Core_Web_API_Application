@@ -22,14 +22,6 @@ namespace Les1_V2
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<IEnumerable<Post>> LoadPostsAsync(int startId = 1, int count = 1)
-        {
-            var tasks = Enumerable.Range(startId, count)
-                                  .Select(id => LoadPostAsync(id));
-            await Task.WhenAll(tasks);
-            return tasks.Select(x => x.Result);
-        }
-
         public async Task<Post> LoadPostAsync(int id = 1)
         {
             if (id <= 0)

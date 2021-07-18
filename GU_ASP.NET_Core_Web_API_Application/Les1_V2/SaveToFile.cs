@@ -11,13 +11,7 @@ namespace Les1_V2
     {
         private static readonly JsonSerializerOptions Options = new JsonSerializerOptions() { WriteIndented = true };
 
-        //public static async Task SaveToFileAsync<T>(string pathToFile, IEnumerable<T> data)
-        //{
-        //    var stream = File.Create(pathToFile);
-        //    await JsonSerializer.SerializeAsync(stream, data, Options);
-        //}
-
-        public static async void SaveFile(string pathToFile, IEnumerable<Post> data)
+        public static async Task SaveFileAsync(string pathToFile, List<Task<Post>> data)
         {
             var stream = File.Create(pathToFile);
             await JsonSerializer.SerializeAsync(stream, data, Options);
