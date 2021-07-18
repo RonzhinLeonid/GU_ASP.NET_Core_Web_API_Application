@@ -8,8 +8,14 @@ namespace WebApi.Repository
 {
     public interface ICatsRepository
     {
-        void Add(Cat kitten);
+        Task Add(Cat cat);
 
-        IList<Cat> Get();
+        Task<IList<Cat>> Get();
+
+        Task Delete(int id);
+
+        Task Update(Cat cat);
+
+        Task<IList<Cat>> GetFilter(string nickname, int page, int size);
     }
 }

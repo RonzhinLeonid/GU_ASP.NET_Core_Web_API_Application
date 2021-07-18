@@ -25,16 +25,28 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public void Add(CatRequest request)
+        public async Task Add(CatRequest request)
         {
-            _catsRepository.Add(_mapper.Map<Cat>(request));
+            await _catsRepository.Add(_mapper.Map<Cat>(request));
         }
 
         [HttpGet]
-        public IEnumerable<CatResponses> Get()
+        public async Task<IEnumerable<CatResponses>> Get()
         {
-            var data = _catsRepository.Get();
+            var data = await _catsRepository.Get();
             return data.Select(_mapper.Map<CatResponses>);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task DeleteAsync([FromRoute] int id)
+        {
+            await _catsRepository.Delete(id);
+        }
+
+        [HttpPut]
+        public async Task UpdateAsync(CatUpdRequest request)
+        {
+            await _catsRepository.Update(_mapper.Map<Cat>(request));
         }
     }
 }

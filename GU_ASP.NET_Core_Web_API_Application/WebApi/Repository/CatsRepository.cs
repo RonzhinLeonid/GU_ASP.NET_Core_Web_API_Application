@@ -13,17 +13,38 @@ namespace WebApi.Repository
 
         public CatsRepository(IDbContextFactory<ApplicationDataContext> context) => _context = context;
 
-        public void Add(Cat cat)
+        public async Task Add(Cat cat)
         {
-            var catsList = _context.CreateDbContext();
-            catsList.Add(cat);
-            catsList.SaveChanges();
+            await using var catsList = _context.CreateDbContext();
+            await catsList.AddAsync(cat);
+            await catsList.SaveChangesAsync();
         }
 
-        public IList<Cat> Get()
+        public async Task Delete(int id)
         {
-            var catsList = _context.CreateDbContext();
-            return catsList.Cats.ToList();
+            await using var catsList = _context.CreateDbContext();
+            var catDelete = await catsList.Cats.SingleOrDefaultAsync(t => t.Id == id);
+            if (catDelete is null) return;
+            catsList.Cats.Remove(catDelete);
+            await catsList.SaveChangesAsync();
         }
+
+        public async Task<IList<Cat>> Get()
+        {
+            await using var catsList = _context.CreateDbContext();
+            return await catsList.Cats.ToListAsync();
+        }
+        public async Task Update(Cat cat)
+        {
+            await using var catsList = _context.CreateDbContext();
+            catsList.Update(cat);
+            await catsList.SaveChangesAsync();
+        }
+
+        public Task<IList<Cat>> GetFilter(string nickname, int page, int size)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
