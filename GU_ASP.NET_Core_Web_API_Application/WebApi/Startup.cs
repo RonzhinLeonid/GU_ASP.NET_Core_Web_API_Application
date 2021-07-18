@@ -30,17 +30,18 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<ICatsRepository, CatsRepository>();
+
+            services.AddSingleton<ICatsRepository, CatsRepository>(); 
 
             var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
             var mapper = mapperConfiguration.CreateMapper();
-            services.AddSingleton(mapper);
+            services.AddSingleton(mapper); 
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
-            services.Configure<ServiceProperties>(Configuration.GetSection(nameof(ServiceProperties)));
+
             services.AddDbContextFactory<ApplicationDataContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
@@ -56,9 +57,6 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
-
-            //app.UseHttpsRedirection();
-            //app.UseStaticFiles();
 
             app.UseRouting();
 

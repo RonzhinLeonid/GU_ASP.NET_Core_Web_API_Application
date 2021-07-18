@@ -18,7 +18,6 @@ namespace migrations
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            //await _context.CreateDbContext().Database.MigrateAsync(cancellationToken);
             await using var context = _context.CreateDbContext();
             if ((await context.Database.GetPendingMigrationsAsync(cancellationToken)).Any())
             {
