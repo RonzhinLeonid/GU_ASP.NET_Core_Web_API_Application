@@ -32,7 +32,6 @@ namespace migrations
                                    && level == LogLevel.Information);
                        }));
                    });
-                   //services.AddScoped<Worker>();
                    services.AddHostedService<Worker>();
                });
     }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DataLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace WebApi.DAL
     {
         public MapperProfile()
         {
-            CreateMap<CatRequest, CatResponses>();
+            CreateMap<CatRequest, Cat>();
+            CreateMap<Cat, CatResponses>();
         }
     }
 }
