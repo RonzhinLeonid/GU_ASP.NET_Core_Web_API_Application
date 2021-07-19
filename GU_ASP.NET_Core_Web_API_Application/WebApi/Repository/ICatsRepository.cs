@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.DAL;
 
 namespace WebApi.Repository
 {
@@ -16,6 +17,7 @@ namespace WebApi.Repository
 
         Task Update(Cat cat);
 
-        Task<IList<Cat>> GetFilter(string nickname, int page, int size);
+        Task<IList<Cat>> GetFilterName(SearchWithPageRequest searchWithPage);
+        Task<IList<Cat>> GetFilterName(SearcRequest search);
     }
 }

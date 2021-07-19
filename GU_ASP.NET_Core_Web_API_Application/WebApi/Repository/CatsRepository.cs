@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.DAL;
 
 namespace WebApi.Repository
 {
@@ -41,10 +42,22 @@ namespace WebApi.Repository
             await catsList.SaveChangesAsync();
         }
 
-        public Task<IList<Cat>> GetFilter(string nickname, int page, int size)
+        public async Task<IList<Cat>> GetFilterName(SearchWithPageRequest searchWithPage)
         {
-            throw new NotImplementedException();
+            if (searchWithPage.Page < 1) return new List<Cat>();
+            await using var catsList = _context.CreateDbContext();
+            return await catsList.Cats
+                .Where(p => p.Nickname.ToLower().Contains(searchWithPage.Nickname.ToLower()))
+                .Skip((searchWithPage.Page-1) * searchWithPage.Size)
+                .Take(searchWithPage.Size)
+                .ToListAsync();
         }
-
+        public async Task<IList<Cat>> GetFilterName(SearcRequest search)
+        {
+            await using var catsList = _context.CreateDbContext();
+            return await catsList.Cats
+                .Where(p => p.Nickname.ToLower().Contains(search.Nickname.ToLower()))
+                .ToListAsync();
+        }
     }
 }
