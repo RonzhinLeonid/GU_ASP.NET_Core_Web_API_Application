@@ -32,6 +32,7 @@ namespace WebApi
             services.AddControllers();
 
             services.AddSingleton<ICatsRepository, CatsRepository>(); 
+            services.AddSingleton<IClinicsRepository, ClinicsRepository>(); 
 
             var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
             var mapper = mapperConfiguration.CreateMapper();
