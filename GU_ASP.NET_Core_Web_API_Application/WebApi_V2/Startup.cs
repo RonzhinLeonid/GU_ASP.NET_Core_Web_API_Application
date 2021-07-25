@@ -4,13 +4,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebApi.DAL;
-using WebApi.Repository;
+using WebApi_V2.DAL;
+using WebApi_V2.Repository;
 using DataLayer;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
-namespace WebApi
+namespace WebApi_V2
 {
     public class Startup
     {
@@ -21,24 +22,22 @@ namespace WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
 
-            services.AddSingleton<ICatsRepository, CatsRepository>(); 
-            services.AddSingleton<IClinicsRepository, ClinicsRepository>(); 
+            services.AddTransient<ICatsRepository, CatsRepository>();
 
             var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
             var mapper = mapperConfiguration.CreateMapper();
-            services.AddSingleton(mapper); 
+            services.AddSingleton(mapper);
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
 
-            services.AddDbContextFactory<ApplicationDataContext>(options =>
+            services.AddDbContext<ApplicationDataContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
             });
