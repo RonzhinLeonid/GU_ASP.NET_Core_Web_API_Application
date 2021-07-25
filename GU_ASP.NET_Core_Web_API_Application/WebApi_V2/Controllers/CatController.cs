@@ -5,10 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebApi.DAL;
-using WebApi.Repository;
+using WebApi_V2.DAL;
+using WebApi_V2.Repository;
 
-namespace WebApi.Controllers
+namespace WebApi_V2.Controllers
 {
     [Route("cats")]
     [ApiController]
