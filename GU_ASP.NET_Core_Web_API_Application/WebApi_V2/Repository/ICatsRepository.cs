@@ -13,7 +13,7 @@ namespace WebApi_V2.Repository
         Task<IList<Cat>> Get();
         Task Delete(int id);
         Task Update(Cat cat);
-        Task<IList<Cat>> GetFilterName(SearchWithPageRequest searchWithPage);
-        Task<IList<Cat>> GetFilterName(SearcRequest search);
+        Task<IList<Cat>> GetFilterName(SearchCatWithPageRequest searchWithPage);
+        Task<IList<Cat>> GetFilterName(SearchCatRequest search);
     }
 }

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2.DAL
 {
-    public class SearcRequest
+    public class ClinicUpdRequest
     {
-        public string Nickname { get; init; }
+        public int Id { get; init; }
+        public string Name { get; init; }
     }
 }

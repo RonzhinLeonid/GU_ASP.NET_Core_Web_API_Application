@@ -27,6 +27,7 @@ namespace WebApi_V2
             services.AddControllers();
 
             services.AddTransient<ICatsRepository, CatsRepository>();
+            services.AddTransient<IClinicsRepository, ClinicsRepository>();
 
             var mapperConfiguration = new MapperConfiguration(mp => mp.AddProfile(new MapperProfile()));
             var mapper = mapperConfiguration.CreateMapper();

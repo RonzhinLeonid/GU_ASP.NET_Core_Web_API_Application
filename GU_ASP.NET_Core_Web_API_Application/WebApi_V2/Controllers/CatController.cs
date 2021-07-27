@@ -49,14 +49,14 @@ namespace WebApi_V2.Controllers
         }
 
         [HttpGet("searchFilter")]
-        public async Task<IEnumerable<CatResponses>> GetWithFilter([FromQuery] SearchWithPageRequest searchWithPage)
+        public async Task<IEnumerable<CatResponses>> GetWithFilter([FromQuery] SearchCatWithPageRequest searchWithPage)
         {
             var data = await _catsRepository.GetFilterName(searchWithPage);
             return data.Select(_mapper.Map<CatResponses>);
         }
 
         [HttpGet("search")]
-        public async Task<IEnumerable<CatResponses>> GetWithFilter([FromQuery] SearcRequest search)
+        public async Task<IEnumerable<CatResponses>> GetWithFilter([FromQuery] SearchCatRequest search)
         {
             var data = await _catsRepository.GetFilterName(search);
             return data.Select(_mapper.Map<CatResponses>);
