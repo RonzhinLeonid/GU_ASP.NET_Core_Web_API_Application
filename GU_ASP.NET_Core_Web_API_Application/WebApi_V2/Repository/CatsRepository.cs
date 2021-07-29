@@ -56,5 +56,22 @@ namespace WebApi_V2.Repository
                 .Where(p => p.Nickname.ToLower().Contains(search.Nickname.ToLower()))
                 .ToListAsync();
         }
+
+        public async Task AddClinicInCat(int catId, int clinicId)
+        {
+            var cat = await _context.Cats.Include(c => c.Clinics).SingleOrDefaultAsync(t => t.Id == catId);
+            var clinic = await _context.Clinics.SingleOrDefaultAsync(t => t.Id == clinicId);
+            if (clinic is null || cat is null || clinic.Cats.Contains(cat)) return;
+
+            cat.Clinics.Add(clinic);
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IList<Clinic>> GetListClinicsInCat(int catId)
+        {
+            var cat = await _context.Cats.Include(c => c.Clinics).SingleOrDefaultAsync(t => t.Id == catId);
+            return cat is null ? new List<Clinic>() : cat.Clinics.ToList();
+        }
     }
 }

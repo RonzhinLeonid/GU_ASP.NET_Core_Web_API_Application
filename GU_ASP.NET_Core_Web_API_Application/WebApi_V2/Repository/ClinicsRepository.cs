@@ -51,5 +51,11 @@ namespace WebApi_V2.Repository
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IList<Cat>> GetListCatInClinic(int clinicId)
+        {
+            var clinic = await _context.Clinics.Include(c => c.Cats).SingleOrDefaultAsync(t => t.Id == clinicId);
+            return clinic is null ? new List<Cat>() : clinic.Cats.ToList();
+        }
     }
 }

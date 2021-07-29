@@ -54,5 +54,11 @@ namespace WebApi_V2.Controllers
             await _clinicsRepository.AddCatInClinic(clinicId, catId);
         }
 
+        [HttpGet("{clinicId:int}")]
+        public async Task<IEnumerable<CatResponses>> GetListClinicsInCat(int clinicId)
+        {
+            var data = await _clinicsRepository.GetListCatInClinic(clinicId);
+            return data.Select(_mapper.Map<CatResponses>);
+        }
     }
 }

@@ -61,5 +61,18 @@ namespace WebApi_V2.Controllers
             var data = await _catsRepository.GetFilterName(search);
             return data.Select(_mapper.Map<CatResponses>);
         }
+
+        [HttpPost("{catId:int}/add/{clinicId:int}")]
+        public async Task AddCatInClinic(int catId, int clinicId)
+        {
+            await _catsRepository.AddClinicInCat(catId, clinicId);
+        }
+
+        [HttpGet("{catId:int}")]
+        public async Task<IEnumerable<ClinicResponses>> GetListClinicsInCat(int catId)
+        {
+            var data = await _catsRepository.GetListClinicsInCat(catId);
+            return data.Select(_mapper.Map<ClinicResponses>);
+        }
     }
 }

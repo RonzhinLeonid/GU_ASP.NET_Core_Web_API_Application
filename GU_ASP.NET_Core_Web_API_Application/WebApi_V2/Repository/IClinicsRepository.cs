@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2.Repository
 {
-    public interface IClinicsRepository
+    public interface IClinicsRepository : ICRUDReposotory<Clinic>
     {
-        Task Add(Clinic cat);
-        Task<IList<Clinic>> Get();
-        Task Delete(int id);
-        Task Update(Clinic cat);
         Task AddCatInClinic(int clinicId, int catId);
+        Task<IList<Cat>> GetListCatInClinic(int clinicId);
     }
 }
