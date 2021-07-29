@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "migrations", "migrations\migrations.csproj", "{6258353B-1166-4EBE-B334-FFAF57F952DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi_V2", "WebApi_V2\WebApi_V2.csproj", "{74586735-8E75-4ACA-A812-7239561537A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi_V2", "WebApi_V2\WebApi_V2.csproj", "{74586735-8E75-4ACA-A812-7239561537A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizationAPI", "AuthorizationAPI\AuthorizationAPI.csproj", "{78AC5FAC-060F-418B-AF1F-9AACB9EDBD1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{74586735-8E75-4ACA-A812-7239561537A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74586735-8E75-4ACA-A812-7239561537A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74586735-8E75-4ACA-A812-7239561537A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78AC5FAC-060F-418B-AF1F-9AACB9EDBD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78AC5FAC-060F-418B-AF1F-9AACB9EDBD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78AC5FAC-060F-418B-AF1F-9AACB9EDBD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78AC5FAC-060F-418B-AF1F-9AACB9EDBD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
