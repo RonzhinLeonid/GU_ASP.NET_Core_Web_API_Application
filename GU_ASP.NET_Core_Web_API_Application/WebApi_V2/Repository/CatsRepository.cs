@@ -8,7 +8,7 @@ using WebApi_V2.DAL;
 
 namespace WebApi_V2.Repository
 {
-    public class CatsRepository : ICatsRepository
+    public class CatsRepository : ICatsRepository 
     {
         private readonly ApplicationDataContext _context;
 

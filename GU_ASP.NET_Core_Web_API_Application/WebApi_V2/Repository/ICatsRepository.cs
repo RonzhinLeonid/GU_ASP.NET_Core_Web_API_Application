@@ -7,7 +7,7 @@ using WebApi_V2.DAL;
 
 namespace WebApi_V2.Repository
 {
-    public interface ICatsRepository : ICRUDReposotory<Cat>
+    public interface ICatsRepository : ICRUDReposotory<Cat> 
     {
         Task<IList<Cat>> GetFilterName(SearchCatWithPageRequest searchWithPage);
         Task<IList<Cat>> GetFilterName(SearchCatRequest search);

@@ -5,7 +5,7 @@ namespace migrations.Migrations
     public partial class AddClinic_V2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        { 
             migrationBuilder.DropForeignKey(
                 name: "FK_CatClinic_Cat_CatsId",
                 table: "CatClinic");

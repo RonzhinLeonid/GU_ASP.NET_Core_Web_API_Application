@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2
 {
-    public class Program
+    public class Program 
     {
         public static void Main(string[] args)
         {

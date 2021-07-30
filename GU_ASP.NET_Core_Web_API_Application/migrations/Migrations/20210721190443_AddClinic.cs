@@ -6,7 +6,7 @@ namespace migrations.Migrations
     public partial class AddClinic : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        { 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Cats",
                 table: "Cats");

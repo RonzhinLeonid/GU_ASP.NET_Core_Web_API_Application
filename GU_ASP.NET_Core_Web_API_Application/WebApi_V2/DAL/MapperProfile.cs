@@ -7,7 +7,7 @@ using DataLayer;
 
 namespace WebApi_V2.DAL
 {
-    public class MapperProfile : Profile
+    public class MapperProfile : Profile 
     {
         public MapperProfile()
         {

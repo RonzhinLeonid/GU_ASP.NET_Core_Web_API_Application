@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace migrations
 {
     internal class Program
-    {
+    { 
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

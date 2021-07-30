@@ -24,7 +24,7 @@ namespace WebApi_V2.Controllers
         }
 
         [HttpPost]
-        public async Task Add(CatRequest request)
+        public async Task Add(CatRequest request) 
         {
             await _catsRepository.Add(_mapper.Map<Cat>(request));
         }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2.DAL
 {
-    public class SearchCatRequest
+    public class SearchCatRequest 
     {
         public string Nickname { get; init; }
     }

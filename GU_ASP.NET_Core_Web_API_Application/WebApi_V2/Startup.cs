@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace WebApi_V2
 {
-    public class Startup
+    public class Startup 
     {
         public Startup(IConfiguration configuration)
         {

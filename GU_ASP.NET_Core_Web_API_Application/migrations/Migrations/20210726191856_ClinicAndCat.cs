@@ -5,7 +5,7 @@ namespace migrations.Migrations
     public partial class ClinicAndCat : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        { 
 
         }
 

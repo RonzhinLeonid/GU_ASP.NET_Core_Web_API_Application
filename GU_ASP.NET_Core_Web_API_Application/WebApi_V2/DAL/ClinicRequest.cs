@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace WebApi_V2.DAL
 {
     public class ClinicRequest
-    {
+    { 
         public string Name { get; init; }
     }
 }

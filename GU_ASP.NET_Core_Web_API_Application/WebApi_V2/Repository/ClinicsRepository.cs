@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace WebApi_V2.Repository
 {
     public class ClinicsRepository : IClinicsRepository
-    {
+    { 
         private readonly ApplicationDataContext _context;
 
         public ClinicsRepository(ApplicationDataContext context) => _context = context;

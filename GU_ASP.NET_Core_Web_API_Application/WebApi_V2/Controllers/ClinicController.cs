@@ -10,7 +10,7 @@ using WebApi_V2.DAL;
 using WebApi_V2.Repository;
 
 namespace WebApi_V2.Controllers
-{
+{ 
     [Route("clinics")]
     [ApiController]
     public class ClinicController : ControllerBase

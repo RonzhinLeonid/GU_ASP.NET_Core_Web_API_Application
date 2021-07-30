@@ -9,7 +9,7 @@ namespace migrations.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
     partial class ApplicationDataContextModelSnapshot : ModelSnapshot
-    {
+    { 
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

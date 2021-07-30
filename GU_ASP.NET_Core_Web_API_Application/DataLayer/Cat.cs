@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DataLayer
 {
     public class Cat
-    {
+    { 
         public int Id { get; set; }
         public string Nickname { get; set; }
         public double Weigth { get; set; }
