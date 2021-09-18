@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace AuthorizationAPI
 {
-    internal sealed class UserService : IUserService
+    public class UserService : IUserService
     {
-        private IDictionary<string, string> _users = new Dictionary<string, string>()
+        private IDictionary<string, AuthResponse> _users = new Dictionary<string, AuthResponse>()
         {
-            {"test", "test"}
+            {"test", new AuthResponse() { Password = "test"}}
         };
 
         public const string SecretCode = "THIS IS SOME VERY SECRET STRING!!! Im blue da ba dee da ba di da ba dee da ba di da d ba dee da ba di da ba dee";
@@ -26,27 +26,48 @@ namespace AuthorizationAPI
             {
                 return null;
             }
+
+            TokenResponse tokenResponse = new TokenResponse();
+
             int i = 0;
-            foreach (KeyValuePair<string, string> pair in _users)
+            foreach (KeyValuePair<string, AuthResponse> pair in _users)
             {
                 i++;
-                if (string.CompareOrdinal(pair.Key, user) == 0 && string.CompareOrdinal(pair.Value, password) == 0)
+                if (string.CompareOrdinal(pair.Key, user) == 0 && string.CompareOrdinal(pair.Value.Password, password) == 0)
                 {
-                    return new TokenResponse()
-                    {
-                        Token = GenerateJwtToken(i),
-                        RefreshToken = null
-                    };
+                    tokenResponse.Token = GenerateJwtToken(i, 15);
+                    RefreshToken refreshToken = GenerateRefreshToken(i);
+                    pair.Value.LatestRefreshToken = refreshToken;
+                    tokenResponse.RefreshToken = refreshToken.Token;
+                    return tokenResponse;
+
+                    //return new TokenResponse()
+                    //{
+                    //    Token = GenerateJwtToken(i),
+                    //    RefreshToken = null
+                    //};
                 }
             }
             return null;
-
         }
-
-        private string GenerateJwtToken(int id)
+        public string RefreshToken(string token)
+        {
+            int i = 0;
+            foreach (KeyValuePair<string, AuthResponse> pair in _users)
+            {
+                i++;
+                if (string.CompareOrdinal(pair.Value.LatestRefreshToken.Token, token) == 0
+                    && pair.Value.LatestRefreshToken.IsExpired is false)
+                {
+                    pair.Value.LatestRefreshToken = GenerateRefreshToken(i);
+                    return pair.Value.LatestRefreshToken.Token;
+                }
+            }
+            return string.Empty;
+        }
+        private string GenerateJwtToken(int id, int minutes)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
-
             byte[] key = Encoding.ASCII.GetBytes(SecretCode);
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
@@ -55,13 +76,18 @@ namespace AuthorizationAPI
                 {
                     new Claim(ClaimTypes.Name, id.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(minutes),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
-
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
-
             return tokenHandler.WriteToken(token);
+        }
+        public RefreshToken GenerateRefreshToken(int id)
+        {
+            RefreshToken refreshToken = new RefreshToken();
+            refreshToken.Expires = DateTime.Now.AddMinutes(360);
+            refreshToken.Token = GenerateJwtToken(id, 360);
+            return refreshToken;
         }
     }
 }

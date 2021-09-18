@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace AuthorizationAPI
 {
-    interface IUserService
+    public interface IUserService
     {
         TokenResponse Authenticate(string user, string password);
+        string RefreshToken(string token);
+
     }
 }

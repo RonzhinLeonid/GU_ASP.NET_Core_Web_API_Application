@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace WebApi_V2.Controllers
 {
     [Route("cats")]
     [ApiController]
+    [Authorize]
     public class CatController : ControllerBase
     {
         private readonly ICatsRepository _catsRepository;
