@@ -11,5 +11,6 @@ namespace DataLayer
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Cat> Cats { get; set; }
+        public ICollection<Analysis> Analyzes { get; init; }
     }
 }

@@ -15,5 +15,6 @@ namespace DataLayer
         public bool HasCirtificate { get; set; }
         public string Feed { get; set; }
         public ICollection<Clinic> Clinics { get; set; }
+        public ICollection<Analysis> Analyzes { get; init; }
     }
 }
