@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
+using WebApi_V2.Validations;
 
 namespace WebApi_V2
 {
@@ -86,6 +87,11 @@ namespace WebApi_V2
                     }
                 });
             });
+
+            services.AddSingleton<ICatCreateValidation, CatCreateValidation>();
+            services.AddSingleton<ICatUpdateValidation, CatUpdateValidation>();
+            services.AddSingleton<IClinicCreateValidation, ClinicCreateValidation>();
+            services.AddSingleton<IClinicUpdateValidation, ClinicUpdateValidation>();
 
             services.AddDbContext<ApplicationDataContext>(options =>
             {

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApi_V2.DAL;
 using WebApi_V2.Repository;
+using WebApi_V2.Validations;
 
 namespace WebApi_V2.Controllers
 {
@@ -18,17 +19,27 @@ namespace WebApi_V2.Controllers
     {
         private readonly ICatsRepository _catsRepository;
         private readonly IMapper _mapper;
+        private readonly ICatCreateValidation _createRequestValidator;
+        private readonly ICatUpdateValidation _updateRequestValidator;
 
-        public CatController(ICatsRepository catsRepository, IMapper mapper)
+        public CatController(ICatsRepository catsRepository, IMapper mapper, ICatCreateValidation createRequestValidator , ICatUpdateValidation updateRequestValidator)
         {
             _catsRepository = catsRepository;
             _mapper = mapper;
+            _createRequestValidator = createRequestValidator;
+            _updateRequestValidator = updateRequestValidator;
         }
 
         [HttpPost]
-        public async Task Add(CatRequest request)
+        public async Task<CatCreateResponse> Add(CatRequest request)
         {
+            var failures = _createRequestValidator.ValidateEntity(request);
+            if (failures.Count > 0)
+            {
+                return new CatCreateResponse(failures, false);
+            }
             await _catsRepository.Add(_mapper.Map<Cat>(request));
+            return new CatCreateResponse(failures, true);
         }
 
         [HttpGet]
@@ -45,9 +56,15 @@ namespace WebApi_V2.Controllers
         }
 
         [HttpPut]
-        public async Task UpdateAsync(CatUpdRequest request)
+        public async Task<CatUpdateResponse> UpdateAsync(CatUpdRequest request)
         {
+            var failures = _updateRequestValidator.ValidateEntity(request);
+            if (failures.Count > 0)
+            {
+                return new CatUpdateResponse(failures, false);
+            }
             await _catsRepository.Update(_mapper.Map<Cat>(request));
+            return new CatUpdateResponse(failures, true);
         }
 
         [HttpGet("searchFilter")]

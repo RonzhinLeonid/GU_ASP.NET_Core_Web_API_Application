@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi_V2.DAL;
+using WebApi_V2.Validations;
 
 namespace WebApi_V2.Repository
 {
