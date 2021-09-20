@@ -14,5 +14,7 @@ namespace DataLayer
         public string Color { get; set; }
         public bool HasCirtificate { get; set; }
         public string Feed { get; set; }
+        public ICollection<Clinic> Clinics { get; set; }
+        public ICollection<Analysis> Analyzes { get; init; }
     }
 }
