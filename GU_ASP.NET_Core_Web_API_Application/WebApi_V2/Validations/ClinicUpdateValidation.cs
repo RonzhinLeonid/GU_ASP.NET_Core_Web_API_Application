@@ -23,7 +23,7 @@ namespace WebApi_V2.Validations
                 .WithErrorCode("BRL-101.21")
                 .GreaterThan(0)
                 .WithMessage("Id не может быть меньше 0")
-                .WithErrorCode("BRL-100.22");
+                .WithErrorCode("BRL-101.22");
         }
     }
 }
