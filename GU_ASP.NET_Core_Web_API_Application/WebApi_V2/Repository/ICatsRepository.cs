@@ -3,12 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi_V2.DAL;
 
 namespace WebApi_V2.Repository
 {
-    public interface ICatsRepository
+    public interface ICatsRepository : ICRUDReposotory<Cat>
     {
-        void Add(Cat kitten);
-        IList<Cat> Get();
+        Task<IList<Cat>> GetFilterName(SearchCatWithPageRequest searchWithPage);
+        Task<IList<Cat>> GetFilterName(SearchCatRequest search);
+        Task AddClinicInCat(int catId, int clinicId);
+        Task<IList<Clinic>> GetListClinicsInCat(int catId);
     }
 }
