@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace WebApi_V2.DAL
 {
     public class CatUpdRequest
-    {
+    { 
         public int Id { get; init; }
         public string Nickname { get; init; }
         public double Weight { get; init; }

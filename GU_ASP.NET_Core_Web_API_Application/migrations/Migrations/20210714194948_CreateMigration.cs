@@ -6,7 +6,7 @@ namespace migrations.Migrations
     public partial class CreateMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
+        { 
             migrationBuilder.CreateTable(
                 name: "Cats",
                 columns: table => new

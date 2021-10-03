@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace migrations
 {
     internal class Worker : IHostedService
-    {
+    { 
         private readonly IDbContextFactory<ApplicationDataContext> _context;
 
         public Worker(IDbContextFactory<ApplicationDataContext> context)

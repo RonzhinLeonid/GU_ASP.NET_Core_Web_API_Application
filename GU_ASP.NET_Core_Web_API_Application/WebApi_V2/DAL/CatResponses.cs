@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2.DAL
 {
-    public class CatResponses
+    public class CatResponses 
     {
         public int Id { get; init; }
         public string Nickname { get; init; }

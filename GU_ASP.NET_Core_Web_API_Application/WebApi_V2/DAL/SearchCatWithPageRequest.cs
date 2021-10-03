@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace WebApi_V2.DAL
 {
-    public class SearchWithPageRequest
-    {
+    public class SearchCatWithPageRequest
+    { 
         public string Nickname { get; init; }
         public int Page { get; init; }
         public int Size { get; init; }

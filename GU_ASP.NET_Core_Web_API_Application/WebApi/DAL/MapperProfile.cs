@@ -14,6 +14,10 @@ namespace WebApi.DAL
             CreateMap<CatRequest, Cat>();
             CreateMap<CatUpdRequest, Cat>();
             CreateMap<Cat, CatResponses>();
+
+            CreateMap<ClinicRequest, Clinic>();
+            CreateMap<ClinicUpdRequest, Clinic>();
+            CreateMap<Clinic, ClinicResponses>();
         }
     }
 }

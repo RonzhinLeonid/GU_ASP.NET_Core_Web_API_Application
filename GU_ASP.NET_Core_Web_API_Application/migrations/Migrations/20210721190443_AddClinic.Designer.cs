@@ -2,15 +2,17 @@
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace migrations.Migrations
 {
     [DbContext(typeof(ApplicationDataContext))]
-    partial class ApplicationDataContextModelSnapshot : ModelSnapshot
-    { 
-        protected override void BuildModel(ModelBuilder modelBuilder)
+    [Migration("20210721190443_AddClinic")]
+    partial class AddClinic
+    {
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,7 @@ namespace migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cats");
+                    b.ToTable("Cat");
                 });
 
             modelBuilder.Entity("DataLayer.Clinic", b =>
@@ -72,7 +74,7 @@ namespace migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clinics");
+                    b.ToTable("Clinic");
                 });
 
             modelBuilder.Entity("CatClinic", b =>

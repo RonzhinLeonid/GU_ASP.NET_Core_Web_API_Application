@@ -7,13 +7,11 @@ using WebApi_V2.DAL;
 
 namespace WebApi_V2.Repository
 {
-    public interface ICatsRepository
+    public interface ICatsRepository : ICRUDReposotory<Cat> 
     {
-        Task Add(Cat cat);
-        Task<IList<Cat>> Get();
-        Task Delete(int id);
-        Task Update(Cat cat);
-        Task<IList<Cat>> GetFilterName(SearchWithPageRequest searchWithPage);
-        Task<IList<Cat>> GetFilterName(SearcRequest search);
+        Task<IList<Cat>> GetFilterName(SearchCatWithPageRequest searchWithPage);
+        Task<IList<Cat>> GetFilterName(SearchCatRequest search);
+        Task AddClinicInCat(int catId, int clinicId);
+        Task<IList<Clinic>> GetListClinicsInCat(int catId);
     }
 }
