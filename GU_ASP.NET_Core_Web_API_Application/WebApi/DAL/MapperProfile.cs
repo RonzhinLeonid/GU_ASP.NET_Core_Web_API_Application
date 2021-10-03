@@ -12,6 +12,7 @@ namespace WebApi.DAL
         public MapperProfile()
         {
             CreateMap<CatRequest, Cat>();
+            CreateMap<CatUpdRequest, Cat>();
             CreateMap<Cat, CatResponses>();
         }
     }
