@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace WebApi_V2.Controllers
 { 
     [Route("clinics")]
     [ApiController]
+    [Authorize]
     public class ClinicController : ControllerBase
     {
         private readonly IClinicsRepository _clinicsRepository;
